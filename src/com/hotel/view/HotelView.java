@@ -1,6 +1,36 @@
 package com.hotel.view;
 
-import com.hotel.view.contracts.ViewI;
+import com.hotel.model.Hotel;
+import com.hotel.view.base.BaseView;
 
-public class HotelView implements ViewI {
+import java.util.List;
+
+
+public class HotelView extends BaseView {
+
+    private final List<Hotel> hotelList;
+
+    public void showMenu(){
+        printHeader();
+    }
+
+    public List<Hotel> getAll(){
+
+    }
+
+    private void viewHotelDetails(int hotelId){
+        for(Hotel hotel : hotelList){
+            if(hotel.getId() == hotelId){
+                System.out.println(hotel);
+                break;
+            }
+        }
+    }
+
+
+
+
+
+
+
 }

@@ -1,15 +1,18 @@
-package com.hotel.view;
-
-import com.hotel.view.contracts.ViewI;
+package com.hotel.view.base;
 
 
+import com.hotel.view.contracts.IView;
 
-public abstract  class BaseView implements ViewI{
+public abstract  class BaseView implements IView {
 
-    public void printHeader(String title){
+    protected void printHeader(String title){
         System.out.println("====================================");
         System.out.println(" " + title);
         System.out.println("====================================");
+    }
+
+    protected void invalidOption(){
+        System.out.println("Invalid Option. please try again");
     }
 
     @Override

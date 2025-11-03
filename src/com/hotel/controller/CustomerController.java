@@ -1,12 +1,20 @@
 package com.hotel.controller;
 
-import com.hotel.service.contracts.UserSeviceI;
+import com.hotel.model.Customer;
+import com.hotel.service.contracts.IBaseService;
 
 public class CustomerController {
-    private final UserSeviceI userSeviceI;
+    private final IBaseService customerService;
     
-    public CustomerController(UserServiceI userServiceI){
-        this.userSeviceI = userServiceI;
+    public CustomerController(IBaseService customerService) {
+        this.customerService = customerService;
     }
-    
+
+    public boolean insert(Customer customer){
+        return customerService.insert(customer);
+    }
+
+    public int login(Customer customer){
+        return customerService.logIn();
+    }
 }

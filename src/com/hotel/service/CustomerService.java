@@ -1,15 +1,51 @@
 package com.hotel.service;
 
-import com.hotel.dao.contracts.UserDAOI;
-import com.hotel.service.contracts.UserSeviceI;
+import com.hotel.dao.contracts.IBaseDAO;
+import com.hotel.model.Customer;
+import com.hotel.service.contracts.IBaseService;
 
-public class CustomerService implements UserServiceI {
+import java.util.List;
 
-    private final UserDAOI userDAOI;
+public class CustomerService implements IBaseService<Customer> {
 
-    public CustomerService(UserDAOI userDAOI){
-        this.userDAOI = userDAOI;
+    private final IBaseDAO customerDAO;
+
+    public CustomerService(IBaseDAO customerDAO){
+        this.customerDAO = customerDAO;
     }
 
-    
+    public boolean insert(Customer customer){
+      return  customerDAO.insert(customer);
+    }
+
+    public int logIn(Customer customer){
+        return customerDAO.logIn();
+    }
+
+    @Override
+    public boolean update(Customer object) {
+        return false;
+    }
+
+    @Override
+    public boolean delete(Customer object) {
+        return false;
+    }
+
+    @Override
+    public Customer getById(Integer id) {
+        return null;
+    }
+
+    @Override
+    public List<Customer> getAll() {
+        return List.of();
+    }
+
+    @Override
+    public boolean isExists(Customer object) {
+        return false;
+    }
+
+
 }

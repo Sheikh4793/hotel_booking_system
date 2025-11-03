@@ -1,5 +1,5 @@
 package com.hotel.view.contracts;
 
-public interface ViewI {
+public interface IView {
     void showMenu();
 }

@@ -1,23 +1,22 @@
 package com.hotel.view;
 
-import com.hotel.model.Operator;
-import com.hotel.model.Customer;
 import com.hotel.util.MyScanner;
+import com.hotel.view.base.BaseView;
+import com.hotel.view.contracts.IView;
 
-public class HomeView  {
+public class HomeView extends BaseView {
 
-    private final Operator operator;
-    private final Customer customer;
+    private final IView operatorView;
+    private final IView customerView;
 
-    public HomeView(Operator operator,Customer customer){
-        this.operator = operator;
-        this.customer = customer;
+    public HomeView(IView operatorView, IView customerView){
+        this.operatorView = operatorView;
+        this.customerView = customerView;
     }
 
     public void showMenu() {
-        System.out.println("====================================");
-        System.out.println(" " + "WELCOME TO HOTEL BOOKING SYSTEM");
-        System.out.println("====================================");
+
+        printHeader("WELCOME TO HOTEL BOOKING SYSTEM");
         
         while(true){
             System.out.println("1.Operator\n2.Customer\n3.Exit");
@@ -25,15 +24,15 @@ public class HomeView  {
 
             switch(choice){
                 case 1:
-                  
+                    operatorView.showMenu();
                 case 2:
-
+                    customerView.showMenu();
                 case 3:
                   System.out.println("Thank you for visiting!");
                   return;
 
                 default:
-                  System.out.println("Invalid choice, please try again.");
+                  invalidOption();
                   
             }
         }
