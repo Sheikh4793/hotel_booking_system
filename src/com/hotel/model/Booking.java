@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 
 import com.hotel.model.constants.BookingStatus;
 
-public class HotelBooking {
+public class Booking {
     private int bookingId;
     private int customerId;
     private int roomId;
@@ -16,9 +16,9 @@ public class HotelBooking {
     private BigDecimal totalAmount;
     private LocalDateTime createdAt;
 
-    public HotelBooking() {}
+    public Booking() {}
 
-    public HotelBooking(int bookingId, int customerId, int roomId, LocalTime checkInTime, LocalTime checkOutTime, BookingStatus status, BigDecimal totalAmount, LocalDateTime createdAt) {
+    public Booking(int bookingId, int customerId, int roomId, LocalTime checkInTime, LocalTime checkOutTime, BookingStatus status, BigDecimal totalAmount, LocalDateTime createdAt) {
         this.bookingId = bookingId;
         this.customerId = customerId;
         this.roomId = roomId;

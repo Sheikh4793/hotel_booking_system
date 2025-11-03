@@ -2,7 +2,7 @@ package com.hotel.model;
 
 import com.hotel.model.constants.RoomType;
 
-public class HotelRoom {
+public class Room {
     private int roomId;
     private int hotelId;
     private int roomNumber;
@@ -11,9 +11,9 @@ public class HotelRoom {
     private int pricePerNight;
     private boolean available;
 
-    public HotelRoom() {}
+    public Room() {}
 
-    public HotelRoom(int roomId, int hotelId, int roomNumber, RoomType roomType, int capacity, int pricePerNight, boolean available) {
+    public Room(int roomId, int hotelId, int roomNumber, RoomType roomType, int capacity, int pricePerNight, boolean available) {
         this.roomId = roomId;
         this.hotelId = hotelId;
         this.roomNumber = roomNumber;

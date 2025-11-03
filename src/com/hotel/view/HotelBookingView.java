@@ -1,15 +1,15 @@
 package com.hotel.view;
 
-import com.hotel.model.HotelBooking;
-import com.hotel.view.contracts.View;
+import com.hotel.model.Booking;
+import com.hotel.view.contracts.ViewI;
 
-public class HotelBookingView implements View<T> {
+public class HotelBookingView extends BaseView{
 
-    public HotelBooking getInput() {
+    public Booking getInput() {
 
     }
 
-    public void showDetails(HotelBooking hotelBooking) {
+    public void showDetails(Booking hotelBooking) {
 
     }
 

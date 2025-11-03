@@ -1,14 +1,14 @@
 package com.hotel.model;
 
-public class HotelOperator extends User {
+public class Operator extends User {
     private int OperatorId;
     private int hotelId;
     private String role;
 
-    public HotelOperator() {
+    public Operator() {
     }
 
-    public HotelOperator(int operatorId, int hotelId, String name, String email, String password, String role) {
+    public Operator(int operatorId, int hotelId, String name, String email, String password, String role) {
         super( name, email, password);
         this.OperatorId = operatorId;
         this.hotelId = hotelId;

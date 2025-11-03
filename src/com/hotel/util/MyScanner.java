@@ -12,18 +12,21 @@ public class MyScanner {
     private static Scanner scanner = new Scanner(System.in);
 
 
-    public String getString(String input){
+    public static String getString(String input){
         System.out.println(input);
         return scanner.nextLine();
     }
 
-    public int getInt(String input){
+    public static int getInt(String input){
         System.out.println(input);
+        while(!(scanner.hasNext())){
+            System.out.println("Invalid input.please enter a number");
+        }
         return scanner.nextInt();
     }
 
 
-    public BigDecimal getDouble(String input){
+    public static BigDecimal getBigDecimal(String input){
         System.out.println(input);
         return scanner.nextBigDecimal();
     }

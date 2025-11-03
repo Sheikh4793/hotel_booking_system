@@ -1,10 +1,10 @@
 import com.hotel.model.Hotel;
-import com.hotel.model.HotelOperator;
+import com.hotel.model.Operator;
 import com.hotel.util.TableCreator;
 
 public class Main {
     public static void main(String[] args) {
-        HotelOperator hotelOperator = new HotelOperator();
+        Operator hotelOperator = new Operator();
         System.out.println("HotelOperator"+hotelOperator);
 
         try {
@@ -14,6 +14,7 @@ public class Main {
         }
         catch (Exception e) {
             System.out.println("Error while initializing data base");
+            e.printStackTrace();
         }
     }
 }

@@ -1,14 +1,14 @@
 package com.hotel.model;
 
-public class HotelLocation {
+public class Location {
     private int locationId;
     private String city;
     private String state;
     private String country;
 
-    public HotelLocation(){}
+    public Location(){}
 
-    public HotelLocation(int locationId, String city, String state, String country) {
+    public Location(int locationId, String city, String state, String country) {
         this.locationId = locationId;
         this.city = city;
         this.state = state;

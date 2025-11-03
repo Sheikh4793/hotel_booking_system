@@ -1,6 +1,6 @@
 package com.hotel.view;
 
-import com.hotel.view.contracts.View;
+import com.hotel.view.contracts.ViewI;
 
-public class HotelView implements View {
+public class HotelView implements ViewI {
 }

@@ -1,13 +1,13 @@
 package com.hotel.model;
 
-public class HotelCustomer extends User {
+public class Customer extends User {
     private int customerId;
     private String phoneNumber;
     private String address;
 
-    public HotelCustomer() {}
+    public Customer() {}
 
-    public HotelCustomer(int customerId, String name, String email, String password, String phoneNumber, String address) {
+    public Customer(int customerId, String name, String email, String password, String phoneNumber, String address) {
         super(name, email, password);
         this.customerId = customerId;
         this.phoneNumber = phoneNumber;
