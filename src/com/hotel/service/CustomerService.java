@@ -18,8 +18,8 @@ public class CustomerService implements IBaseService<Customer> {
       return  customerDAO.insert(customer);
     }
 
-    public int logIn(Customer customer){
-        return customerDAO.logIn();
+    public int logIn(String email, String password){
+        return customerDAO.logIn(email,password);
     }
 
     @Override

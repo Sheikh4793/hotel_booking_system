@@ -10,12 +10,16 @@ public class HotelView extends BaseView {
 
     private final List<Hotel> hotelList;
 
+    public HotelView(List<Hotel> hotelList) {
+        this.hotelList = hotelList;
+    }
+
     public void showMenu(){
-        printHeader();
+        printHeader("");
     }
 
     public List<Hotel> getAll(){
-
+        return hotelList;
     }
 
     private void viewHotelDetails(int hotelId){

@@ -14,7 +14,10 @@ public class CustomerController {
         return customerService.insert(customer);
     }
 
-    public int login(Customer customer){
-        return customerService.logIn();
+    public int login(String email,String password){
+        if( instanceof ){
+
+        }
+        return customerService.logIn(email,password);
     }
 }

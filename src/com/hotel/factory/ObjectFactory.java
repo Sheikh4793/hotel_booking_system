@@ -13,6 +13,9 @@ import com.hotel.view.CustomerView;
 import com.hotel.view.HomeView;
 import com.hotel.view.contracts.IView;
 
+import java.io.IOException;
+import java.sql.SQLException;
+
 
 public class ObjectFactory {
 
@@ -21,7 +24,7 @@ public class ObjectFactory {
 
 
    //view layer
-    public static IView getHomeVIew(){
+    public static IView getHomeVIew() throws SQLException, IOException, ClassNotFoundException {
         if(IView == null){
             IView = new HomeView(new OperatorView(new OperatorController(new OperatorService(new OperatorDAO()))),new CustomerView(new CustomerController(new CustomerService(new CustomerDAO(DBConnection.getInstance().getConnection())))));
 

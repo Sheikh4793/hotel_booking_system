@@ -51,7 +51,7 @@ public class CustomerView extends BaseAuthView {
 
         private void login(){
             String[] credentials = getLogInCredentials();
-            (credentials[0],credentials[1]);
+            customerController.login(credentials[0],credentials[1]);
         }
 
 

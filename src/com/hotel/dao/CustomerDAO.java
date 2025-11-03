@@ -3,9 +3,14 @@ package com.hotel.dao;
 import com.hotel.dao.contracts.IBaseDAO;
 import com.hotel.model.Customer;
 
+import java.sql.Connection;
 import java.util.List;
 
 public class CustomerDAO implements IBaseDAO<Customer>{
+
+    public CustomerDAO(Connection connection) {
+
+    }
 
     @Override
     public boolean insert(Customer object) {
@@ -38,7 +43,7 @@ public class CustomerDAO implements IBaseDAO<Customer>{
     }
 
 
-    public int login(Customer customer){
-
+    public int login(String username,String password){
+        return 0;
     }
 }

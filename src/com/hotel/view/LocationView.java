@@ -7,7 +7,7 @@ import com.hotel.view.base.BaseView;
 public class LocationView extends BaseView {
 
     public List<Location> getAll(){
-
+        return null;
     }
 
 
