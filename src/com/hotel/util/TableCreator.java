@@ -44,7 +44,7 @@ public class TableCreator {
             rs.next();
             int count = rs.getInt(1);
             if (count > 0) {
-                System.out.println("ℹ️ Sample data already exists. Skipping seeding.");
+                System.out.println("ℹ️ Sample data already exists. Skipping adding default data.");
                 return;
             }
         }

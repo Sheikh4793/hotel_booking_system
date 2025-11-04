@@ -5,5 +5,5 @@ import com.hotel.customexception.ServiceException;
 import com.hotel.model.User;
 
 public interface IUserService<T> extends IBaseService<T> {
-    int logIn(String email,String password)throws ServiceException;
+    T logIn(String email,String password)throws ServiceException;
 }

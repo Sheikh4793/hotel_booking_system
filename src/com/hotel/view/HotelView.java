@@ -2,25 +2,24 @@ package com.hotel.view;
 
 import com.hotel.controller.HotelController;
 import com.hotel.customexception.ServiceException;
-import com.hotel.dto.BookingDisplay;
 import com.hotel.model.Hotel;
-import com.hotel.service.HotelService;
+import com.hotel.model.dto.BookingDisplay;
+import com.hotel.model.dto.HotelDisplay;
 import com.hotel.util.MyScanner;
+import com.hotel.util.Session;
 import com.hotel.view.base.BaseView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
 public class HotelView extends BaseView {
 
-    private List<BookingDisplay> hotelList;
-    private HotelController hotelController;
-    private int operatorId;
 
-    public HotelView(HotelController hotelController,int operatorId) throws ServiceException {
+    private final HotelController hotelController;
+    private  int operatorId;
+
+    public HotelView(HotelController hotelController) throws ServiceException {
         this.hotelController = hotelController;
-        this.operatorId = operatorId;
     }
 
     public void showMenu(){
@@ -32,7 +31,15 @@ public class HotelView extends BaseView {
 
             switch (choice) {
                 case 1:
-
+                    getHotelBookings();
+                    break;
+                case 2:
+                    getHotelDetails();
+                    break;
+                case 3:
+                    return;
+                default:
+                    invalidOption();
             }
         }
     }
@@ -42,19 +49,80 @@ public class HotelView extends BaseView {
 
     private void getHotelBookings(){
        try {
-           hotelList = hotelController.getHotelList(operatorId);
+           List<BookingDisplay> hotelList = hotelController.getHotelList(Session.getOperatorId());
+
+           if(hotelList.isEmpty()){
+               System.out.println("No hotel bookings found");
+               return;
+           }
+
+           for(BookingDisplay booking : hotelList){
+               System.out.println(booking);
+               printDividerLine();
+           }
        }
        catch (ServiceException e) {
            System.out.println("Failed to get hotel bookings");
        }
 
-       if(hotelList == null){
-           System.out.println("No hotel bookings found");
-       }
-       printHeader("HOTEL BOOKINGS");
-       for(BookingDisplay booking : hotelList){
-           System.out.println(booking);
-       }
+    }
+
+    private void getHotelDetails(){
+        try {
+           List<HotelDisplay> hotelDetails = hotelController.getHotelDetails(Session.getOperatorId());
+
+           if(hotelDetails.isEmpty()){
+               System.out.println("No hotel Details found");
+               return;
+           }
+
+           for(HotelDisplay hotel : hotelDetails){
+               System.out.println(hotel);
+               printDividerLine();
+           }
+
+        }
+        catch (ServiceException e) {
+            System.out.println("Failed to get hotel details");
+
+        }
+    }
+
+    public void getAllHotels(){
+        try {
+            List<Hotel> hotels = hotelController.getAllHotels(Session.getOperatorId());
+
+            if (hotels.isEmpty()) {
+                System.out.println("No hotels found");
+                return;
+            }
+
+            for(Hotel hotel : hotels){
+                System.out.println(hotel);
+                printDividerLine();
+            }
+        }
+        catch (ServiceException e) {
+            System.out.println("Failed to get hotels");
+        }
+    }
+
+    public void viewHotelsByLocation(String location){
+        try {
+            List<HotelDisplay> hotels = hotelController.getHotelsByLocation(location);
+
+            if(hotels.isEmpty()){
+                System.out.println("No hotels found");
+                return;
+            }
+            for(HotelDisplay hotel : hotels){
+                System.out.println(hotel);
+            }
+        }
+
+        catch (ServiceException e){
+            System.out.println("Failed to get hotels by location");
+        }
     }
 
 

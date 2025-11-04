@@ -13,7 +13,7 @@ public class OperatorController {
         this.operatorService = operatorService;
     }
 
-    public int login(String email,String password)throws ServiceException {
+    public Operator login(String email,String password)throws ServiceException {
         return operatorService.logIn(email,password);
     }
 }

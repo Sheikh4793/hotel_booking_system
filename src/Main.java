@@ -4,8 +4,6 @@ import com.hotel.util.TableCreator;
 
 public class Main {
     public static void main(String[] args) {
-        Operator hotelOperator = new Operator();
-        System.out.println("HotelOperator"+hotelOperator);
 
         try {
             TableCreator.createTable();

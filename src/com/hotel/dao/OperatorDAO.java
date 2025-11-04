@@ -20,8 +20,8 @@ public class OperatorDAO extends BaseDAO implements IUserDAO<Operator> {
 
 
     @Override
-    public int insert(Operator obj) throws DataBaseException {
-        return 0;
+    public Operator insert(Operator obj) throws DataBaseException {
+        return null;
     }
 
     @Override
@@ -40,9 +40,10 @@ public class OperatorDAO extends BaseDAO implements IUserDAO<Operator> {
     }
 
     @Override
-    public List getAll() {
+    public List<Operator> getAll(int id) throws DataBaseException {
         return List.of();
     }
+
 
     @Override
     public boolean isExists(Operator object) {
@@ -51,19 +52,24 @@ public class OperatorDAO extends BaseDAO implements IUserDAO<Operator> {
 
 
     @Override
-    public int login(String email, String password) throws DataBaseException {
-        String sql = "SELECT id FROM hotel_operators WHERE email = ? AND password = ? ";
-        int id = 0;
-        try {
+    public Operator login(String email, String password) throws DataBaseException {
+            String sql = "SELECT id, hotel_id, name, role FROM hotel_operators WHERE email = ? AND password = ?";
+            Operator operator = null;
+
             try (ResultSet rs = executeQuery(sql, email, password)) {
                 if (rs.next()) {
-                    id = rs.getInt("id");
+                    operator = new Operator();
+                    operator.setOperatorId(rs.getInt("id"));
+                    operator.setHotelId(rs.getInt("hotel_id"));
+                    operator.setName(rs.getString("name"));
+                    operator.setRole(rs.getString("role"));
                 }
+            } catch (SQLException e) {
+                throw new DataBaseException("Unable to log in operator in DB", e);
             }
-        } catch (SQLException e) {
-            throw new DataBaseException("unable to logIn operator", e);
+
+            return operator;
         }
-        return id;
+
     }
-}
 

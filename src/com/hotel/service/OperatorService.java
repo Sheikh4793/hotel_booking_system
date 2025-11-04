@@ -5,6 +5,7 @@ import com.hotel.customexception.ServiceException;
 import com.hotel.dao.contracts.IUserDAO;
 import com.hotel.model.Operator;
 import com.hotel.service.contracts.IUserService;
+import com.hotel.util.Session;
 
 import java.util.List;
 
@@ -20,19 +21,28 @@ public class OperatorService implements IUserService<Operator> {
     }
 
     @Override
-    public int logIn(String email, String password) throws ServiceException {
+    public Operator logIn(String email, String password) throws ServiceException {
         try {
-           userId = operatorDAO.login(email, password);
+            Operator operator = operatorDAO.login(email, password);
+
+            if (operator == null) {
+                return null;
+            }
+
+            Session.setOperatorId(operator.getOperatorId());
+            Session.setHotelId(operator.getHotelId());
+
+            return operator;
+
+        } catch (DataBaseException e) {
+            throw new ServiceException("Unable to log in operator", e);
         }
-        catch (DataBaseException e) {
-            throw new ServiceException("unable to logIn operator",e);
-        }
-        return userId;
     }
 
+
     @Override
-    public int insert(Operator object) {
-        return 0;
+    public Operator insert(Operator object) {
+        return null;
     }
 
     @Override
@@ -51,7 +61,7 @@ public class OperatorService implements IUserService<Operator> {
     }
 
     @Override
-    public List<Operator> getAll() {
+    public List<Operator> getAll(int id) {
         return List.of();
     }
 

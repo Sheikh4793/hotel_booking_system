@@ -6,10 +6,10 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface IBaseDAO<T> {
-    int insert(T obj) throws DataBaseException;
+    T insert(T obj) throws DataBaseException;
     boolean update(T object);
     boolean delete(T object);
     T getById(Integer id);
-    List<T> getAll();
+    List<T> getAll(int id)throws DataBaseException;
     boolean isExists(T object);
 }

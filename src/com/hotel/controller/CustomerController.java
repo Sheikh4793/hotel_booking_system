@@ -11,19 +11,16 @@ import java.sql.SQLException;
 
 public class CustomerController {
     private final IUserService<Customer> customerService;
-    private int id = 0;
     
     public CustomerController(IUserService<Customer> customerService) {
         this.customerService = customerService;
     }
 
-    public int insert(Customer customer)throws ServiceException{
-        id = customerService.insert(customer);
-        return id;
+    public Customer insert(Customer customer)throws ServiceException{
+        return  customerService.insert(customer);
     }
 
-    public int login(String email,String password) throws ServiceException {
-       id = customerService.logIn(email,password);
-        return id;
+    public Customer login(String email,String password) throws ServiceException {
+       return customerService.logIn(email,password);
     }
 }

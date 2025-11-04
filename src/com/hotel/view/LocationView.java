@@ -9,8 +9,4 @@ public class LocationView extends BaseView {
     public List<Location> getAll(){
         return null;
     }
-
-
-
-
 }

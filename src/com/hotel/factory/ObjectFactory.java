@@ -1,16 +1,11 @@
 package com.hotel.factory;
 
 
-import com.hotel.controller.CustomerController;
-import com.hotel.controller.OperatorController;
-import com.hotel.dao.CustomerDAO;
-import com.hotel.dao.OperatorDAO;
-import com.hotel.service.CustomerService;
-import com.hotel.service.OperatorService;
+import com.hotel.controller.*;
+import com.hotel.dao.*;
+import com.hotel.service.*;
 import com.hotel.util.DBConnection;
-import com.hotel.view.OperatorView;
-import com.hotel.view.CustomerView;
-import com.hotel.view.HomeView;
+import com.hotel.view.*;
 import com.hotel.view.contracts.IView;
 
 import java.io.IOException;
@@ -23,7 +18,7 @@ public class ObjectFactory {
     private static IView IView;
 
 
-    //view layer
+    //homeview,operator,customer dependency injection
     public static IView getHomeVIew() throws SQLException, IOException, ClassNotFoundException {
         if (IView == null) {
             IView = new HomeView(new OperatorView(new OperatorController(new OperatorService(new OperatorDAO(DBConnection.getInstance().getConnection())))), new CustomerView(new CustomerController(new CustomerService(new CustomerDAO(DBConnection.getInstance().getConnection())))));
@@ -32,9 +27,24 @@ public class ObjectFactory {
         return IView;
     }
 
-    public
+    //hotel dependency injection
+    public static HotelView getHotelView() throws SQLException, IOException, ClassNotFoundException {
+        return new HotelView(new HotelController(new HotelService(new HotelDAO(DBConnection.getInstance().getConnection()))));
+    }
+
+    //room dependency injection
+    public static IView getRoomView() throws SQLException, IOException, ClassNotFoundException {
+        return new RoomView(new RoomController(new RoomService(new RoomDAO(DBConnection.getInstance().getConnection()))));
+    }
+
+    //booking dependency injection
+    public static IView getBookingView() throws SQLException, IOException, ClassNotFoundException {
+        return new BookingView(new BookingController(new BookingService(new BookingDAO(DBConnection.getInstance().getConnection()))));
+    }
+
 
 
     private ObjectFactory() {
+
     }
 }
