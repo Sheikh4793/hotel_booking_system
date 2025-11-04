@@ -11,7 +11,7 @@ public class RoomView extends BaseView {
     private List<Room> roomList;
 
     public List<Room> getAll(){
-
+        return null;
     }
 
     public void viewRoomDetails(int roomId){

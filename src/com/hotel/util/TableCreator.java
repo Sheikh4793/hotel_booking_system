@@ -31,7 +31,7 @@ public class TableCreator {
                     CREATE TABLE IF NOT EXISTS hotel_bookings(id SERIAL PRIMARY KEY,customer_id INT REFERENCES hotel_customers(id) NOT NULL,room_id INT REFERENCES hotel_rooms(id) NOT NULL,check_in DATE NOT NULL,check_out DATE NOT NULL,status VARCHAR(55) NOT NULL,total_amount DECIMAL(10,2) NOT NULL,created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP);
                     """);
             System.out.println("All tables are created successfully");
-            defaultData(conn,stmt);
+            defaultData(conn, stmt);
             stmt.close();
         } catch (Exception e) {
             throw e;
@@ -51,27 +51,39 @@ public class TableCreator {
 
         //  default locations
         stmt.executeUpdate("""
-            INSERT INTO hotel_locations (city_name, state, country) VALUES
-            ('Chennai', 'Tamil Nadu', 'India'),
-            ('Bangalore', 'Karnataka', 'India'),
-            ('Mumbai', 'Maharashtra', 'India');
-        """);
+                    INSERT INTO hotel_locations (city_name, state, country) VALUES
+                    ('Chennai', 'Tamil Nadu', 'India'),
+                    ('Bangalore', 'Karnataka', 'India'),
+                    ('Mumbai', 'Maharashtra', 'India');
+                """);
 
         //  default hotels
         stmt.executeUpdate("""
-            INSERT INTO hotels (hotel_name, location_id, type, contact_number, email, address) VALUES
-            ('Sea View Resort', 1, 'Resort', '9876543210', 'seaview@hotel.com', 'Beach Road, Chennai'),
-            ('Skyline Inn', 2, 'Business', '9123456780', 'skyline@hotel.com', 'MG Road, Bangalore'),
-            ('Grand Palace', 3, 'Luxury', '9988776655', 'grandpalace@hotel.com', 'Marine Drive, Mumbai');
-        """);
+                    INSERT INTO hotels (hotel_name, location_id, type, contact_number, email, address)
+                    VALUES
+                    ('Sea View Resort', (SELECT id FROM hotel_locations WHERE city_name = 'Chennai'), 'Resort', '9876543210', 'seaview@hotel.com', 'Beach Road, Chennai'),
+                    ('Skyline Inn', (SELECT id FROM hotel_locations WHERE city_name = 'Bangalore'), 'Business', '9123456780', 'skyline@hotel.com', 'MG Road, Bangalore'),
+                    ('Grand Palace', (SELECT id FROM hotel_locations WHERE city_name = 'Mumbai'), 'Luxury', '9988776655', 'grandpalace@hotel.com', 'Marine Drive, Mumbai');
+                """);
 
-        //  default operators
+
+        // default operators
         stmt.executeUpdate("""
-            INSERT INTO hotel_operators (hotel_id, name, email, password, role) VALUES
-            (1, 'Ravi Kumar', 'ravi@seaview.com', 'ravi123', 'Manager'),
-            (2, 'Sneha Rao', 'sneha@skyline.com', 'sneha123', 'Operator'),
-            (3, 'Amit Shah', 'amit@grandpalace.com', 'amit123', 'Manager');
-        """);
+                    INSERT INTO hotel_operators (hotel_id, name, email, password, role) VALUES
+                    ((SELECT id FROM hotels WHERE hotel_name = 'Sea View Resort'), 'Ravi Kumar', 'ravi@seaview.com', 'Ravi123', 'Manager'),
+                    ((SELECT id FROM hotels WHERE hotel_name = 'Skyline Inn'), 'Sneha Rao', 'sneha@skyline.com', 'Sneha123', 'Operator'),
+                    ((SELECT id FROM hotels WHERE hotel_name = 'Grand Palace'), 'Amit Shah', 'amit@grandpalace.com', 'Amit123', 'Manager');
+                """);
+
+
+
+        //  customers
+        stmt.executeUpdate("""
+                    INSERT INTO hotel_customers (name, email, password, phone, address) VALUES
+                    ('Karthik Raj', 'karthik.raj@gmail.com', 'Karthik123', '9876543211', 'Adyar, Chennai'),
+                    ('Priya Menon', 'priya.menon@gmail.com', 'Priya123', '9123456781', 'Indiranagar, Bangalore'),
+                    ('Rahul Verma', 'rahul.verma@gmail.com', 'Rahul123', '9988776656', 'Andheri, Mumbai');
+                """);
 
         System.out.println("default data added successfully");
     }

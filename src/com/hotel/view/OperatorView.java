@@ -2,10 +2,9 @@ package com.hotel.view;
 
 
 import com.hotel.controller.OperatorController;
+import com.hotel.customexception.ServiceException;
 import com.hotel.util.MyScanner;
-import com.hotel.util.Validator;
 import com.hotel.view.base.BaseAuthView;
-import com.hotel.view.base.BaseView;
 
 public class OperatorView extends BaseAuthView {
 
@@ -17,14 +16,15 @@ public class OperatorView extends BaseAuthView {
 
     @Override
     public void showMenu() {
-        printHeader("OPERATOR MENU");
-        System.out.println("1.Operator LogIn\n2.Back");
-        int choice = MyScanner.getInt("Enter your choice : ");
-
         while (true) {
+
+            printHeader("OPERATOR MENU");
+            System.out.println("1.Operator LogIn\n2.Back");
+            int choice = MyScanner.getInt("Enter your choice : ");
+
             switch (choice) {
                 case 1:
-                    login();
+                    logIn();
                     break;
                 case 2:
                     return;
@@ -34,10 +34,26 @@ public class OperatorView extends BaseAuthView {
         }
     }
 
-    private void login() {
+    private void logIn() {
       String[] credentials =  getLogInCredentials();
+        try {
+            int userId = operatorController.login(credentials[0], credentials[1]);
+
+            if(userId == 0){
+                System.out.println("Operator login failed");
+            }
+            else{
+                System.out.println("Operator login successful");
+            }
+
+        }
+        catch (ServiceException e){
+            System.out.println("Sorry login failed");
+        }
 
     }
+
+
 
 
 }

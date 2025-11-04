@@ -1,9 +1,12 @@
 package com.hotel.dao.contracts;
 
+import com.hotel.customexception.DataBaseException;
+
+import java.sql.SQLException;
 import java.util.List;
 
 public interface IBaseDAO<T> {
-    boolean insert(T object);
+    int insert(T obj) throws DataBaseException;
     boolean update(T object);
     boolean delete(T object);
     T getById(Integer id);
