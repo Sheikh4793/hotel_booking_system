@@ -1,7 +1,11 @@
 package com.hotel.view.base;
 
 
+import com.hotel.util.MyScanner;
+import com.hotel.util.Validator;
 import com.hotel.view.contracts.IView;
+
+import java.util.function.Predicate;
 
 public abstract  class BaseView implements IView {
 
@@ -20,7 +24,16 @@ public abstract  class BaseView implements IView {
         System.out.println("BaseMenu");
     }
 
-   
+    protected String showUntilValid(String userMessage, Predicate<String> validator, String errorMessage){
+        String input = MyScanner.getString(userMessage);
+        while(!validator.test(input)){
+            System.out.println(errorMessage);
+            input = MyScanner.getString(userMessage);
+        }
+        return input;
+    }
+
+
 
 
 

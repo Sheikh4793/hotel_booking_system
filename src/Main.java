@@ -1,4 +1,4 @@
-import com.hotel.model.Hotel;
+import com.hotel.factory.ObjectFactory;
 import com.hotel.model.Operator;
 import com.hotel.util.TableCreator;
 
@@ -9,8 +9,7 @@ public class Main {
 
         try {
             TableCreator.createTable();
-            Hotel hotel = new Hotel();
-            System.out.println(hotel);
+            ObjectFactory.getHomeVIew().showMenu();
         }
         catch (Exception e) {
             System.out.println("Error while initializing data base");

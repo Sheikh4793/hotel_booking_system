@@ -20,19 +20,19 @@ import java.sql.SQLException;
 public class ObjectFactory {
 
 
-   private static IView IView;
+    private static IView IView;
 
 
-   //view layer
+    //view layer
     public static IView getHomeVIew() throws SQLException, IOException, ClassNotFoundException {
-        if(IView == null){
-            IView = new HomeView(new OperatorView(new OperatorController(new OperatorService(new OperatorDAO()))),new CustomerView(new CustomerController(new CustomerService(new CustomerDAO(DBConnection.getInstance().getConnection())))));
+        if (IView == null) {
+            IView = new HomeView(new OperatorView(new OperatorController(new OperatorService(new OperatorDAO(DBConnection.getInstance().getConnection())))), new CustomerView(new CustomerController(new CustomerService(new CustomerDAO(DBConnection.getInstance().getConnection())))));
 
         }
-       return IView;
+        return IView;
     }
 
 
-
-    private  ObjectFactory(){}
+    private ObjectFactory() {
+    }
 }

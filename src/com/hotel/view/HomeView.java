@@ -16,17 +16,18 @@ public class HomeView extends BaseView {
 
     public void showMenu() {
 
-        printHeader("WELCOME TO HOTEL BOOKING SYSTEM");
-        
         while(true){
+            printHeader("WELCOME TO HOTEL BOOKING SYSTEM");
             System.out.println("1.Operator\n2.Customer\n3.Exit");
             int choice = MyScanner.getInt("Enter choice");
 
             switch(choice){
                 case 1:
                     operatorView.showMenu();
+                    break;
                 case 2:
                     customerView.showMenu();
+                    break;
                 case 3:
                   System.out.println("Thank you for visiting!");
                   return;

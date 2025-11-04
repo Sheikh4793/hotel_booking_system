@@ -34,6 +34,7 @@ public class Validator {
         return password != null && PASSWORD_PATTERN.matcher(password).matches();
     }
 
+
     public static boolean isNotEmpty(String value) {
         return value != null && !value.trim().isEmpty();
     }

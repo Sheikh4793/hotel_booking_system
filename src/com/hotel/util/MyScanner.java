@@ -9,7 +9,7 @@ public class MyScanner {
 
     }
 
-    private static Scanner scanner = new Scanner(System.in);
+    private static final Scanner scanner = new Scanner(System.in);
 
 
     public static String getString(String input){
@@ -24,10 +24,13 @@ public class MyScanner {
 
     public static int getInt(String input){
         System.out.println(input);
-        while(!(scanner.hasNext())){
+        while(!scanner.hasNextInt()){
             System.out.println("Invalid input.please enter a number");
+            scanner.next();
         }
-        return scanner.nextInt();
+        int value = scanner.nextInt();
+        scanner.nextLine();
+        return value;
     }
 
 
