@@ -4,12 +4,14 @@ import java.math.BigDecimal;
 import java.time.LocalTime;
 import java.time.LocalDateTime;
 
-import com.hotel.model.constants.BookingStatus;
+import com.hotel.constants.BookingStatus;
 
 public class Booking {
     private int bookingId;
     private int customerId;
+    private Customer customer;
     private int roomId;
+
     private LocalTime checkInTime;
     private LocalTime checkOutTime;
     private BookingStatus status;
@@ -28,6 +30,8 @@ public class Booking {
         this.totalAmount = totalAmount;
         this.createdAt = createdAt;
     }
+
+
 
     public void setBookingId(int bookingId) {
         this.bookingId = bookingId;

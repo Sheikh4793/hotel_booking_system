@@ -13,14 +13,13 @@ public class CustomerService implements IUserService<Customer> {
 
     private final IUserDAO<Customer> customerDAO;
 
-    public CustomerService(IUserDAO<Customer> customerDAO){
+    public CustomerService(IUserDAO<Customer> customerDAO) {
         this.customerDAO = customerDAO;
     }
 
-    public Customer insert(Customer customer) throws ServiceException {
+    public Customer register(Customer customer) throws ServiceException {
         try {
-
-            Customer customer1 = customerDAO.insert(customer);
+            Customer customer1 = customerDAO.register(customer);
 
             if (customer1 == null) {
                 return null;
@@ -50,32 +49,6 @@ public class CustomerService implements IUserService<Customer> {
         } catch (DataBaseException e) {
             throw new ServiceException("Unable to log in customer", e);
         }
-    }
-
-
-    @Override
-    public boolean update(Customer object) {
-        return false;
-    }
-
-    @Override
-    public boolean delete(Customer object) {
-        return false;
-    }
-
-    @Override
-    public Customer getById(Integer id) {
-        return null;
-    }
-
-    @Override
-    public List<Customer> getAll(int id) {
-        return List.of();
-    }
-
-    @Override
-    public boolean isExists(Customer object) {
-        return false;
     }
 
 

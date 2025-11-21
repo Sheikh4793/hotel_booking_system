@@ -1,4 +1,4 @@
-package com.hotel.model.dto;
+package com.hotel.dto;
 
 import java.time.LocalDate;
 import java.math.BigDecimal;

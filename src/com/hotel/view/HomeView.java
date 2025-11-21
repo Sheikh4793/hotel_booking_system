@@ -1,6 +1,7 @@
 package com.hotel.view;
 
 import com.hotel.util.MyScanner;
+import com.hotel.util.TableCreator;
 import com.hotel.view.base.BaseView;
 import com.hotel.view.contracts.IView;
 

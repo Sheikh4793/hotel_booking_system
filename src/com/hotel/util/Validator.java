@@ -1,5 +1,7 @@
 package com.hotel.util;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.regex.Pattern;
 
 public class Validator {
@@ -41,11 +43,47 @@ public class Validator {
     public static boolean isPositiveNumber(int value) {
         return value > 0;
     }
+
+    public static boolean isValidString(String input) {
+        return input != null && !input.trim().isEmpty();
+    }
+
+    public static boolean isValidChoice(int choice, int min, int max) {
+        return choice >= min && choice <= max;
+    }
+
+    public static boolean isValidPositiveNumber(int value) {
+        return value > 0;
+    }
+
+    public static boolean isValidDateRange(LocalDate checkIn, LocalDate checkOut) {
+        if (checkIn == null || checkOut == null) return false;
+        return checkOut.isAfter(checkIn);
+    }
+
+    public static boolean isValidDate(LocalDate checkIn) {
+        return checkIn != null && !checkIn.isBefore(LocalDate.now());
+    }
+
+
+
+    public static boolean isValidConfirmation(String input) {
+        if (!isValidString(input)) return false;
+        String lower = input.trim().toLowerCase();
+        return lower.equals("yes") || lower.equals("no");
+    }
+
+    public static boolean isValidRoomNumber(int value,int maxNumber) {
+        return value <= maxNumber && value >= 0;
+    }
+
+    public static boolean isValidPrice(BigDecimal value) {
+        return BigDecimal.valueOf(800).compareTo(value) < 0;
+    }
+
+    public static boolean isValidName(String input) {
+        return input != null && !input.trim().isEmpty();
+    }
+
 }
 
-//Method	What it checks	Example
-//isValidEmail	Valid email format	abc@gmail.com ✅
-//isValidPhone	10-digit Indian mobile number starting 6–9	9876543210 ✅
-//isValidPassword	At least one uppercase, one lowercase, one digit, min 6 chars	Admin123 ✅
-//isNotEmpty	Non-null and not blank	"hello" ✅
-//isPositiveNumber	Number > 0	5 ✅

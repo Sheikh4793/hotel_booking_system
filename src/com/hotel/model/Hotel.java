@@ -1,6 +1,6 @@
 package com.hotel.model;
 
-import com.hotel.model.constants.HotelType;
+import com.hotel.constants.HotelType;
 
 public class Hotel {
     private int hotelId;

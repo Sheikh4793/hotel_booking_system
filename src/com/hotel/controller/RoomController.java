@@ -2,15 +2,15 @@ package com.hotel.controller;
 
 import com.hotel.customexception.ServiceException;
 import com.hotel.model.Room;
-import com.hotel.service.contracts.IBaseService;
+import com.hotel.service.RoomService;
 
 import java.util.List;
 
 public class RoomController {
 
-    private final IBaseService<Room> roomService ;
+    private final RoomService roomService ;
 
-    public RoomController(IBaseService<Room> roomService) {
+    public RoomController(RoomService roomService) {
         this.roomService = roomService;
     }
 
@@ -20,5 +20,17 @@ public class RoomController {
 
     public List<Room> getAllRooms(int hotelId)throws ServiceException {
        return roomService.getAll(hotelId);
+    }
+
+    public Room getMaxRoomNum(int hotelId) throws ServiceException {
+        return roomService.getById(hotelId);
+    }
+
+    public Room getRoomDetails(int hotelId,int roomNumber) throws ServiceException {
+        return roomService.getRoomDetails(hotelId,roomNumber);
+    }
+
+    public int updateRoom(Room room) throws ServiceException {
+        return roomService.update(room);
     }
 }

@@ -1,4 +1,4 @@
-package com.hotel.model.constants;
+package com.hotel.constants;
 
 public enum RoomType {
     SINGLE,

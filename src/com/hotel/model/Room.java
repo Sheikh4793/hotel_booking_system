@@ -1,6 +1,8 @@
 package com.hotel.model;
 
-import com.hotel.model.constants.RoomType;
+import com.hotel.constants.RoomType;
+
+import java.math.BigDecimal;
 
 public class Room {
     private int roomId;
@@ -8,12 +10,12 @@ public class Room {
     private int roomNumber;
     private RoomType roomType;
     private int capacity;
-    private int pricePerNight;
-    private boolean available;
+    private BigDecimal pricePerNight;
+    private Boolean available;
 
     public Room() {}
 
-    public Room(int roomId, int hotelId, int roomNumber, RoomType roomType, int capacity, int pricePerNight, boolean available) {
+    public Room(int roomId, int hotelId, int roomNumber, RoomType roomType, int capacity, BigDecimal pricePerNight, Boolean available) {
         this.roomId = roomId;
         this.hotelId = hotelId;
         this.roomNumber = roomNumber;
@@ -63,28 +65,28 @@ public class Room {
         this.capacity = capacity;
     }
 
-    public int getPricePerNight() {
+    public BigDecimal getPricePerNight() {
         return pricePerNight;
     }
 
-    public void setPricePerNight(int pricePerNight) {
+    public void setPricePerNight(BigDecimal pricePerNight) {
         this.pricePerNight = pricePerNight;
     }
 
-    public boolean isAvailable() {
+    public Boolean isAvailable() {
         return available;
     }
 
-    public void setAvailable(boolean available) {
+    public void setAvailable(Boolean available) {
         this.available = available;
     }
 
     @Override
     public String toString() {
         return
-                "roomId=" + roomId +
-                ", hotelId=" + hotelId +
-                ", roomNumber=" + roomNumber +
+//                "roomId=" + roomId +
+//                ", hotelId=" + hotelId +
+                " roomNumber=" + roomNumber +
                 ", roomType=" + roomType +
                 ", capacity=" + capacity +
                 ", pricePerNight=" + pricePerNight +

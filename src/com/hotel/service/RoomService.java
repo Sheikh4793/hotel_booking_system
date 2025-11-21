@@ -2,21 +2,19 @@ package com.hotel.service;
 
 import com.hotel.customexception.DataBaseException;
 import com.hotel.customexception.ServiceException;
-import com.hotel.dao.contracts.IBaseDAO;
+import com.hotel.dao.RoomDAO;
 import com.hotel.model.Room;
-import com.hotel.service.contracts.IBaseService;
 
 import java.util.List;
 
-public class RoomService implements IBaseService<Room>{
+public class RoomService {
 
-    private final IBaseDAO<Room> roomDAO;
+    private final RoomDAO roomDAO;
 
-    public RoomService(IBaseDAO<Room> roomDAO) {
+    public RoomService(RoomDAO roomDAO) {
         this.roomDAO = roomDAO;
     }
 
-    @Override
     public Room insert(Room room)throws ServiceException {
         Room room1;
         try {
@@ -32,22 +30,18 @@ public class RoomService implements IBaseService<Room>{
 
     }
 
-    @Override
-    public boolean update(Room object) {
-        return false;
+    public Room getById(Integer hotelId) throws ServiceException {
+        Room room = null;
+
+        try{
+            room = roomDAO.getById(hotelId);
+        }
+        catch (DataBaseException e){
+            throw new ServiceException("unable to get room by hotelId",e);
+        }
+        return room;
     }
 
-    @Override
-    public boolean delete(Room object) {
-        return false;
-    }
-
-    @Override
-    public Room getById(Integer id) {
-        return null;
-    }
-
-    @Override
     public List<Room> getAll(int hotelId)throws  ServiceException {
        try {
           return roomDAO.getAll(hotelId);
@@ -57,8 +51,27 @@ public class RoomService implements IBaseService<Room>{
        }
     }
 
-    @Override
-    public boolean isExists(Room object) {
-        return false;
+    public int update(Room room) throws ServiceException {
+        try{
+            return roomDAO.updateRoom(room);
+        }
+        catch (DataBaseException e) {
+            throw new ServiceException("unable to update room",e);
+        }
     }
+
+    public Room getRoomDetails(int hotelId,int roomNumber) throws ServiceException {
+
+        Room room = null;
+
+        try{
+            room = roomDAO.getRoomDetails(hotelId,roomNumber);
+        }
+        catch (DataBaseException e){
+            throw new ServiceException("unable to get room by hotelId and roomNumber",e);
+        }
+        return room;
+    }
+
+
 }

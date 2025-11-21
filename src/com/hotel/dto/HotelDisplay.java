@@ -1,6 +1,6 @@
-package com.hotel.model.dto;
+package com.hotel.dto;
 
-import com.hotel.model.constants.HotelType;
+import com.hotel.constants.HotelType;
 
 public class HotelDisplay {
 

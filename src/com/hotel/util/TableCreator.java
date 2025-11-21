@@ -31,14 +31,14 @@ public class TableCreator {
                     CREATE TABLE IF NOT EXISTS hotel_bookings(id SERIAL PRIMARY KEY,customer_id INT REFERENCES hotel_customers(id) NOT NULL,room_id INT REFERENCES hotel_rooms(id) NOT NULL,check_in DATE NOT NULL,check_out DATE NOT NULL,status VARCHAR(55) NOT NULL,total_amount DECIMAL(10,2) NOT NULL,created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP);
                     """);
             System.out.println("All tables are created successfully");
-            defaultData(conn, stmt);
+            defaultData( stmt);
             stmt.close();
         } catch (Exception e) {
             throw e;
         }
     }
 
-    private static void defaultData(Connection conn, Statement stmt) throws SQLException {
+    private static void defaultData( Statement stmt) throws SQLException {
 
         try (ResultSet rs = stmt.executeQuery("SELECT COUNT(*) FROM hotel_locations;")) {
             rs.next();

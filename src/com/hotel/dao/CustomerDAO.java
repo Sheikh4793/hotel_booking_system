@@ -5,65 +5,17 @@ import com.hotel.dao.base.BaseDAO;
 import com.hotel.dao.contracts.IUserDAO;
 import com.hotel.model.Customer;
 
-import java.sql.Connection;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
 public class CustomerDAO extends BaseDAO implements IUserDAO<Customer> {
 
-    private Connection connection;
 
-    public CustomerDAO(Connection connection) {
-        super(connection);
+    public CustomerDAO() throws SQLException, ClassNotFoundException, IOException {
     }
 
-    @Override
-    public Customer insert(Customer customer) throws DataBaseException {
-        String query = "INSERT INTO hotel_customers (name, email, password, phone, address) VALUES (?, ?, ?, ?, ?) RETURNING id, name, email, phone, address";
-        Customer Customer = null;
-
-        try (ResultSet rs = executeQuery(query, customer.getName(), customer.getEmail(), customer.getPassword(), customer.getPhoneNumber(), customer.getAddress())) {
-            if (rs.next()) {
-                Customer = new Customer();
-                Customer.setCustomerId((rs.getInt("id")));
-                Customer.setName(rs.getString("name"));
-                Customer.setEmail(rs.getString("email"));
-                Customer.setPhoneNumber(rs.getString("phone"));
-                Customer.setAddress(rs.getString("address"));
-            }
-        } catch (SQLException e) {
-            throw new DataBaseException("Unable to insert customer", e);
-        }
-
-        return Customer;
-    }
-
-
-    @Override
-    public boolean update(Customer object) {
-        return false;
-    }
-
-    @Override
-    public boolean delete(Customer object) {
-        return false;
-    }
-
-    @Override
-    public Customer getById(Integer id) {
-        return null;
-    }
-
-    @Override
-    public List<Customer> getAll(int id) throws DataBaseException {
-        return List.of();
-    }
-
-    @Override
-    public boolean isExists(Customer object) {
-        return false;
-    }
 
     public Customer login(String email, String password) throws DataBaseException {
         String query = "SELECT id, name, email, phone, address FROM hotel_customers WHERE email = ? AND password = ?";
@@ -83,6 +35,27 @@ public class CustomerDAO extends BaseDAO implements IUserDAO<Customer> {
         }
 
         return customer;
+    }
+
+    @Override
+    public Customer register(Customer customer) throws DataBaseException {
+        String query = "INSERT INTO hotel_customers (name, email, password, phone, address) VALUES (?, ?, ?, ?, ?) RETURNING id, name, email, phone, address";
+        Customer Customer = null;
+
+        try (ResultSet rs = executeQuery(query, customer.getName(), customer.getEmail(), customer.getPassword(), customer.getPhoneNumber(), customer.getAddress())) {
+            if (rs.next()) {
+                Customer = new Customer();
+                Customer.setCustomerId((rs.getInt("id")));
+                Customer.setName(rs.getString("name"));
+                Customer.setEmail(rs.getString("email"));
+                Customer.setPhoneNumber(rs.getString("phone"));
+                Customer.setAddress(rs.getString("address"));
+            }
+        } catch (SQLException e) {
+            throw new DataBaseException("Unable to insert customer", e);
+        }
+
+        return Customer;
     }
 
 }

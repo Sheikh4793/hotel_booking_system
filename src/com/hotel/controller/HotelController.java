@@ -2,8 +2,8 @@ package com.hotel.controller;
 
 import com.hotel.customexception.ServiceException;
 import com.hotel.model.Hotel;
-import com.hotel.model.dto.BookingDisplay;
-import com.hotel.model.dto.HotelDisplay;
+import com.hotel.dto.BookingDisplay;
+import com.hotel.dto.HotelDisplay;
 import com.hotel.service.HotelService;
 
 import java.util.List;
@@ -31,6 +31,8 @@ public class HotelController {
     public List<HotelDisplay> getHotelsByLocation(String location) throws ServiceException {
         return hotelService.getHotelByLocation(location);
     }
+
+
 
 
 }

@@ -26,7 +26,7 @@ public class DBConnection {
                 throw new IOException("Missing database properties in database credentials.");
             }
 
-            Class.forName("org.postgresql.Driver");
+//            Class.forName("org.postgresql.Driver");
             connection = DriverManager.getConnection(url,username,password);
 
         }

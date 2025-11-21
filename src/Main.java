@@ -3,15 +3,14 @@ import com.hotel.model.Operator;
 import com.hotel.util.TableCreator;
 
 public class Main {
+
     public static void main(String[] args) {
 
         try {
             TableCreator.createTable();
-            ObjectFactory.getHomeVIew().showMenu();
-        }
-        catch (Exception e) {
+            ObjectFactory.getHomeView().showMenu();
+        } catch (Exception e) {
             System.out.println("Error while initializing data base");
-            e.printStackTrace();
         }
     }
 }

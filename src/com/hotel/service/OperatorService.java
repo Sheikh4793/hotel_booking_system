@@ -16,9 +16,11 @@ public class OperatorService implements IUserService<Operator> {
     private int userId = 0;
 
 
-    public OperatorService(IUserDAO<Operator> operatorDAO){
+    public OperatorService(IUserDAO<Operator> operatorDAO) {
         this.operatorDAO = operatorDAO;
     }
+
+
 
     @Override
     public Operator logIn(String email, String password) throws ServiceException {
@@ -39,34 +41,9 @@ public class OperatorService implements IUserService<Operator> {
         }
     }
 
-
     @Override
-    public Operator insert(Operator object) {
+    public Operator register(Operator customer) {
         return null;
     }
 
-    @Override
-    public boolean update(Operator object) {
-        return false;
-    }
-
-    @Override
-    public boolean delete(Operator object) {
-        return false;
-    }
-
-    @Override
-    public Operator getById(Integer id) {
-        return null;
-    }
-
-    @Override
-    public List<Operator> getAll(int id) {
-        return List.of();
-    }
-
-    @Override
-    public boolean isExists(Operator object) {
-        return false;
-    }
 }

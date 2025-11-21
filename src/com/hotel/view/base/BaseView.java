@@ -1,13 +1,12 @@
 package com.hotel.view.base;
 
 
-import com.hotel.util.MyScanner;
-import com.hotel.util.Validator;
 import com.hotel.view.contracts.IView;
 
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 
-public abstract  class BaseView implements IView {
+public abstract  class BaseView<T> implements IView {
 
     protected void printHeader(String title){
         System.out.println("====================================");
@@ -28,14 +27,19 @@ public abstract  class BaseView implements IView {
         System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
     }
 
-    protected String showUntilValid(String userMessage, Predicate<String> validator, String errorMessage){
-        String input = MyScanner.getString(userMessage);
+    protected <T> T showUntilValid(Supplier<T> supplier, Predicate<T> validator, String errorMessage){
+
+        T input =  supplier.get();
         while(!validator.test(input)){
             System.out.println(errorMessage);
-            input = MyScanner.getString(userMessage);
+            input = supplier.get();
         }
         return input;
     }
+
+
+
+
 
 
 
